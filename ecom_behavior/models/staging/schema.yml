@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_events
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: event_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['login', 'logout', 'search', 'open_product', 'add_to_cart', 
+                       'remove_from_cart', 'like_product', 'unlike_product',
+                       'apply_filters', 'apply_coupon', 'abandon_checkout',
+                       'choose_payment_method', 'purchase']
+      - name: payment_type
+        data_tests:
+          - accepted_values:
+              values: ['Credit Card', 'Debit Card', 'UPI', 'Net Banking', 'COD', 'EMI', 'Gift Card']
+      - name: session_id
+        data_tests:
+          - not_null
+      - name: timestamp
+        data_tests:
+          - not_null
+      - name: page
+        data_tests:
+          - not_null

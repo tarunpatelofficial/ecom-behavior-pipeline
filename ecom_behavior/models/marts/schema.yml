@@ -1,0 +1,138 @@
+version: 2
+
+# session_end and session_duration_minutes could be null for very short sessions
+
+models:
+  - name: fct_sessions
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: session_id
+        data_tests:
+          - not_null
+          - unique
+      - name: Event_Count
+        data_tests:
+          - not_null
+      - name: session_start
+        data_tests:
+          - not_null
+      - name: did_purchase
+        data_tests:
+          - not_null
+
+  - name: fct_funnel
+    columns:
+      - name: sessions_started
+        data_tests:
+          - not_null
+      - name: viewed_product
+        data_tests:
+          - not_null
+      - name: added_to_cart
+        data_tests:
+          - not_null
+      - name: reached_checkout
+        data_tests:
+          - not_null
+      - name: purchased
+        data_tests:
+          - not_null
+      - name: abandoned_checkout
+        data_tests:
+          - not_null
+
+  - name: fct_product_performance
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique
+      - name: product_name
+        data_tests:
+          - not_null
+          - unique
+      - name: category
+        data_tests:
+          - not_null      
+      - name: views
+        data_tests:
+          - not_null      
+      - name: add_to_carts
+        data_tests:
+          - not_null      
+      - name: purchases
+        data_tests:
+          - not_null      
+      - name: total_revenue
+        data_tests:
+          - not_null      
+      
+  - name: fct_search_analysis
+    columns:
+      - name: search_query
+        data_tests:
+          - not_null
+          - unique
+      - name: search_count
+        data_tests:
+          - not_null
+      - name: avg_results
+        data_tests:
+          - not_null
+      - name: led_to_view
+        data_tests:
+          - not_null
+      - name: led_to_purchase
+        data_tests:
+          - not_null
+
+# avg_session_duration_minutes and favorite_category could be null for users with no sessions or no product interactions
+
+  - name: dim_customers
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - unique
+      - name: total_sessions
+        data_tests:
+          - not_null
+      - name: first_seen
+        data_tests:
+          - not_null
+      - name: last_seen
+        data_tests:
+          - not_null
+      - name: total_products_purchased
+        data_tests:
+          - not_null
+      - name: total_purchases
+        data_tests:
+          - not_null
+      - name: total_spent
+        data_tests:
+          - not_null
+      - name: total_searches
+        data_tests:
+          - not_null
+      - name: ever_used_coupon
+        data_tests:
+          - not_null
+      - name: ever_abandoned_checkout
+        data_tests:
+          - not_null
+
+  - name: fct_customer_segments
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_segment
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['High Value Buyer', 'Coupon Hunter', 'Cart Abandoner', 'Window Shopper', 'Quick Buyer', 'Comparison Shopper']
+              

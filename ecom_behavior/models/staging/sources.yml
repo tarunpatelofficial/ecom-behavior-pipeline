@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ecom_behavior
+    database: awsdatacatalog
+    schema: ecom_behavior_db
+    tables:
+      - name: events

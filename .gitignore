@@ -1,0 +1,28 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# AWS credentials
+.env
+*.env
+
+# dbt
+ecom_behavior/target/
+ecom_behavior/logs/
+ecom_behavior/.user.yml
+
+logs/
+*.log
+
+# dbt profiles (contains AWS keys)
+profiles.yml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
